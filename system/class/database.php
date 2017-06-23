@@ -11,7 +11,9 @@
 
 class database {
 	function __construct() {
-		$this->db_connect($GLOBALS['config']['db']['host'],$GLOBALS['config']['db']['user'],$GLOBALS['config']['db']['password'],$GLOBALS['config']['db']['dbname']);
+		if ($GLOBALS['config']['db']['enable']==true) {
+			$this->db_connect($GLOBALS['config']['db']['host'],$GLOBALS['config']['db']['user'],$GLOBALS['config']['db']['password'],$GLOBALS['config']['db']['dbname']);
+		}
 	}
 	
 	/*

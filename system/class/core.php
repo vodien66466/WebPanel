@@ -8,10 +8,21 @@ class core {
 		$path=str_replace("\system","",$path_full);
 		return $path;
 	}
-	public function path_admin () {
-		$path_full=dirname(dirname(__FILE__));
-		$path=str_replace("\system","",$path_full);
-		return $path."/admin/views";
+	public function path_view ($type) {
+		if ($type=="admin") {
+			return $this->path()."/admin/".$this->theme_admin()."/views";
+		} else {
+			return $this->path()."/theme/".$this->theme_index()."/views";
+		}
+		
+	}
+	public function asset ($path,$type) {
+		if ($type=="admin") {
+			return "".$_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME']."/".$GLOBALS['config']['basePath']."/admin/".$this->theme_admin()."/".$path."";
+		} else {
+			return "".$_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME']."/".$GLOBALS['config']['basePath']."/themes/".$this->theme_index()."/".$path."";
+		}
+		
 	}
 	// url_home
 	public function base_url () {

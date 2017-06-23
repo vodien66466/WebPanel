@@ -31,14 +31,6 @@ class helper {
         return $result;
     }
 
-    public function asset($path) {
-        // return $GLOBALS["config"]['rootDir'];
-        $url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/' . $GLOBALS["config"]['basePath'] . '/' . $path;
-        $fileUrl = $GLOBALS["config"]['rootDir'] . '/' . $path;
-        // if(file_exists($fileUrl)) {
-            return $url;
-        // }
-    }
 
 	//hàm bảo mật chống hack sql
 	public function security_string($str) {

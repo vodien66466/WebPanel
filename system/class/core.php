@@ -24,8 +24,102 @@ class core {
 		}
 		
 	}
+
+	public function path_route_controller ($view,$type) {
+		// $view=action-method
+		// path_route("views","action-method/page","admin"); : admin//views/action.php
+		$array_view=explode("/",$view);
+		$array_route=explode("-",$array_view['0']);
+		if ($type=="admin") {
+			$file=$this->path()."/admin/".$this->theme_admin()."";
+		} else {
+			$file=$this->path()."/themes/".$this->theme_index()."";
+		}
+		if (file_exists($file."/controller/".$array_route['0'].".php")) {
+			if ($view!="") { // view tồn tại
+				if (count($array_route) == 1) {
+					// trường hợp chỉ có action
+					return $file."/controller/".$array_route['0'].".php";
+				} else if (count($array_route) == 2) {
+					// trường hợp có action && method
+					if ($array_route['0']!="") { // trường hợp action không có giá trị
+						if ($array_route['1']!="") { 
+							// chạy đến trang action/method
+							// $array_route['0']."/".$array_route['1'];
+							return $file."/controller/".$array_route['0'].".php";
+						} else { 
+							// chạy đến trang action
+							return $file."/controller/".$array_route['0'].".php";
+						}
+					} else {
+						// action không tồn tại báo lỗi
+						throw new Exception('action không tồn tại');
+					}
+				} else {
+					//báo lỗi 
+					throw new Exception('action không tồn tại');
+				}
+			} else {
+				// truong hop nay không có view chay den trng chinh cua trang web
+				return $file."/index.php";
+			}
+		} else {
+			throw new Exception("action /controller/".$array_route['0'].".php không tồn tại");
+		}
+	}
+
+
+
+	public function url_route ($type,$view) {
+		// $view=action-method/page
+		// path_route("views","action-method/page","admin"); : admin//views/action.php
+		if ($type=="admin") {
+			$file="admin";
+		} else {
+			if ($GLOBALS['config']['url_rewrite']==false) {
+				$file="index";
+			} else {
+				$file="home";
+			}
+		}
+		if ($GLOBALS['config']['url_rewrite']==false) {
+			$url=$this->url()."/".$file.".php?view=";
+		} else {
+			$url=$this->url()."/".$file."/";
+		}
+		
+		if ($view!="") { // view tồn tại
+			$array_view=explode("/",$view);
+			$array_route=explode("-",$array_view['0']);
+			if (count($array_route) == 1) {
+				// trường hợp chỉ có action
+				return $url."".$array_route['0'];
+			} else if (count($array_route) == 2) {
+				// trường hợp có action && method
+				if ($array_route['0']!="") { // trường hợp action không có giá trị
+					if ($array_route['1']!="") { 
+						// chạy đến trang action/method
+						// $array_route['0']."/".$array_route['1'];
+						return $url."".$array_route['0']."-".$array_route['1']."";
+					} else { 
+						// chạy đến trang action
+						return $url."".$array_route['0'];
+					}
+				} else {
+					// action không tồn tại báo lỗi
+					throw new Exception('action không tồn tại');
+				}
+			} else {
+				//báo lỗi 
+				throw new Exception('action không tồn tại');
+			}
+		} else {
+			// truong hop nay không có view chay den trng chinh cua trang web
+			return $this->url()."/".$file.".php";
+		}
+	}
 	// url_home
-	public function base_url () {
+	public function url () {
 		return "".$_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME']."/".$GLOBALS['config']['basePath']."";
 	}
 	public function theme_index () {

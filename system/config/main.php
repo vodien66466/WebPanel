@@ -6,12 +6,13 @@ $config = [
 		'debug' => false, // bật tắt báo lỗi (false,true)
 		'timezone' => 'Asia/Ho_Chi_Minh', // múi giờ 
 		'theme' => 'real-estates/home',
+		'url_rewrite' => true,
 		'db' => [
-			'enable' => true, // bật tắt kết nối sql (false,true)
+			'enable' => false, // bật tắt kết nối sql (false,true)
 			'host' => 'localhost',
 			'user' => 'root',
 			'password' => '',
-			'dbname' => 'bds'
+			'dbname' => ''
 		]
 	];
 

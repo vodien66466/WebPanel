@@ -10,6 +10,12 @@
 				<nav class="navbar navbar-transparent navbar-absolute">
 					<?php include ($core->path_view("admin")."/inc/menu.php"); ?>
 				</nav>
+				<div class="content">
+					<?php include ($core->path_view("admin")."/main/index/dashboard.php"); ?>
+				</div>
+				<footer class="footer">
+					<?php include ($core->path_view("admin")."/inc/footer.php"); ?>
+				</footer>
 			</div>
 		</div>
 		<?php include ($core->path_view("admin")."/inc/config_theme.php"); ?>

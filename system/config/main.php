@@ -1,6 +1,6 @@
 <?php
 $config = [
-		'basePath' => 'bds', // Thư mục lưu code
+		'basePath' => 'WebPanel', // Thư mục lưu code
 		'rootDir' => dirname(dirname(__FILE__)), // lấy path
 		'lang' => 'vi', // ngôn ngữ
 		'debug' => false, // bật tắt báo lỗi (false,true)

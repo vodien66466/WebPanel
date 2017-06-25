@@ -2,7 +2,7 @@
 include '../system/autoload.php';
 include 'config.php';
 $title="Command";
-$array = explode(",",$command['view']);
+$array = ['logout','admin','home','list_route'];
 
 if (isset($_POST['login'])) {
 	$password=$_POST['password'];
@@ -19,6 +19,7 @@ if (isset($_SESSION["password"])) {
 
 if ($password_ad==$command['password']) {
 ?>
+
 
 <!DOCTYPE html>
 <html>

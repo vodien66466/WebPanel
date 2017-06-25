@@ -18,9 +18,6 @@
 					                </td>
 					                <td><input type="text" class="form-control" value="Tên Route"></td>
 					                <td class="text-right"><input type="text" class="form-control" value="URL_ROUTE"></td>
-					                <td class="text-right"><button class="btn btn-success btn-sm">Edit<div class="ripple-container"></div></button></td>
-					                <td class="text-right"><button class="btn btn-success btn-sm">Delete<div class="ripple-container"></div></button></td>
-
 					                <td class="text-right"><button class="btn btn-success btn-sm">Home Channel<div class="ripple-container"></div></button></td>
 					                <td class="text-right"><button class="btn btn-success btn-sm">Admin Channel<div class="ripple-container"></div></button></td>
 					            </tr>
@@ -41,15 +38,15 @@
             <div class="modal fade" id="add_route" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			    <div class="modal-dialog">
 			        <div class="modal-content">
-				        <form action="" method="">
+				        <form action="<?=$home?>/back_end.php?view=create_route" method="POST">
 				            <div class="modal-header">
 				                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> <i class="material-icons">clear</i> </button>
 				                <h4 class="modal-title">Tạo Chức năng mới</h4> </div>
 				            <div class="modal-body">
-				                <input type="text" class="form-control" value="Tên Route">
+				                <input type="text" name="name" class="form-control">
 				            </div>
 				            <div class="modal-footer">
-				                <button type="button" class="btn btn-simple">Nice Button</button>
+				                <button type="submit" name="add" class="btn btn-simple">ADD</button>
 				                <button type="button" class="btn btn-danger btn-simple" data-dismiss="modal">Close</button>
 				            </div>
 				        </form>

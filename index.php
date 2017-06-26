@@ -14,4 +14,8 @@ echo $route->path_route("admin","method","controller");
 ?>
 <hr>
 <?php
-echo $route->url("admin");
+echo $route->get_view();
+?>
+<hr>
+<?php
+echo $route->param(2);

@@ -84,6 +84,27 @@ class route extends core
 		return $this->base_url()."/".$this->url_rewrite($theme)."".$route;
 	}
 
+	public function param ($key,$url = null) {
+		$keys=$key+1;
+		if (isset($url)) {
+			$route=$url;
+		} else {
+			$route=$this->get_view();
+		}
+		$array=explode("/",$route);
+		if (count($array) > 1) {
+			$c_data=count($array)-2;
+			if ($key<=$c_data) {
+				return $array[$keys];
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+
+	}
+
 
 
 

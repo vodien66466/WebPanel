@@ -14,6 +14,8 @@ ob_start();
 // Khởi tạo Object 
 include('class/core.php');
 $core = new core;
+include('class/route.php');
+$route = new route;
 include('class/database.php');
 $data = new database;
 include('class/helper.php');

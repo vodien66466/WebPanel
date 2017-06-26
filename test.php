@@ -10,8 +10,8 @@ echo $url;
 ?>
 <hr>
 <?php
-echo $route->path_route("admin","method","controller");
+echo $route->path_controller("admin","action","controller","");
 ?>
 <hr>
 <?php
-echo $route->url("admin");
+echo $route->set_url("-cat","home");

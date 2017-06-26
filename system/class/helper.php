@@ -10,9 +10,21 @@
 
 
 class helper {
+    public function asset ($path,$type) {
+        if ($type=="admin") {
+            return "".$_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME']."/".$GLOBALS['config']['basePath']."/admin/".$this->theme_admin()."/".$path."";
+        } else {
+            return "".$_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME']."/".$GLOBALS['config']['basePath']."/themes/".$this->theme_index()."/".$path."";
+        }
+        
+    }
+    // url_home
+    public function url () {
+        return "".$_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME']."/".$GLOBALS['config']['basePath']."";
+    }
 
     //hàm thêm dấu chấm vào chuổi string số : vd : 15000000 =1.50000
-    function adddotstring($strNum) {
+    public function adddotstring($strNum) {
  
         $len = strlen($strNum);
         $counter = 3;

@@ -20,11 +20,12 @@ include('class/helper.php');
 $helper = new helper;
 include('class/pagin.php');
 $pagin = new pagin;
+$view = isset($_GET['view']) ? trim($_GET['view']) : '';
 
 // xử lý nhận diện lỗi hệ thống và dừng toàn bộ hoạt động
 function exception_handler($exception) {
 	echo "Báo lỗi: " , $exception->getMessage(), "\n";
 }
 set_exception_handler('exception_handler');
-$view = isset($_GET['view']) ? trim($_GET['view']) : '';
+
 ?>

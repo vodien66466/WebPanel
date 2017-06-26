@@ -133,6 +133,68 @@ class core {
 		}
 		
 	}
+	// hàm lấy $_GET[''] từ link
+	public function get_data ($view,$key) {
+		// http://localhost/WebPanel/admin.php?view=carts-edit/a/b/c
+		$keys=$key+1;
+		$array_view=explode("/",$view);
+		if (count($array_view) > 1) {
+			$c_data=count($array_view)-2;
+			if ($key<=$c_data) {
+				return $array_view[$keys];
+			}
+		}
+	}
+	// hàm lấy action từ link
+	public function get_action ($view) {
+		if ($view !="") {
+			$array_view=explode("/",$view);
+			if (count($array_view) > 0) {
+				$array_route=$array_view['0'];
+				if (count($array_route) == 1) {
+					return $array_route['0'];
+				} else if (count($array_route) == 2) {
+					if ($array_route['0']!="") {
+						return $array_route['0'];
+					} else {
+						throw new Exception("action không tồn tại");
+					}
+				} else {
+					throw new Exception("lỗi cấu trúc file");
+				}
+			} else {
+				return "index";
+			}
+		} else {
+			return "index";
+		}
+	}
+	// hàm lấy method từ link
+	public function get_method ($view,$type) {
+		if ($view!="") {
+			$array_view=explode("/",$view);
+			if (count($array_view) > 0) {
+				$array_route=explode("-",$array_view['0']);
+				if (count($array_route) == 1) {
+					return "index";
+				} else if (count($array_route) == 2) {
+					if (file_exists($this->path_route_controller_method ($view,$type))) {
+						return $array_route['1'];
+					} else {
+						throw new Exception("method không tồn tại");
+					}
+				} else {
+					throw new Exception("lỗi cấu trúc file");
+				}
+			} else {
+				return "index";
+			}
+		} else {
+			return "index";
+		}
+		
+	}
+
 
 	public function path_route_view ($view,$type) {
 		// $view=action-method
@@ -199,7 +261,7 @@ class core {
 
 
 
-	public function url_route ($type,$view) {
+	public function url_route ($view,$type) {
 		// $view=action-method/page
 		// path_route("views","action-method/page","admin"); : admin//views/action.php
 		if ($type=="admin") {

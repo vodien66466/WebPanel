@@ -12,7 +12,18 @@ if (isset($_POST['add'])) {
 				//tạo controller
 				mkdir($core->path()."/admin/".$name);
 				mkdir($core->path()."/admin/".$name."/controller");
-				fopen($core->path()."/admin/".$name."/controller/index.php","w+");
+				//tao file controller
+				$fp=@fopen($core->path()."/admin/".$name."/controller/index.php","a+");
+				//ghi file
+$code_conttroller_action ="<?php
+/*
+**		@author     	Võ Tiến Diễn							**
+**		@version    	1.0										**
+**		@email			vodien66466@gmail.com					**
+**		@copyright  	Copyright (C) 06/2017					**
+*/
+";
+    			fwrite($fp, $data);
 				mkdir($core->path()."/admin/".$name."/controller/main");
 				mkdir($core->path()."/admin/".$name."/controller/main/index");
 				fopen($core->path()."/admin/".$name."/controller/main/index/index.php","w+");

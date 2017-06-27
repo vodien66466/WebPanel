@@ -15,9 +15,9 @@ ob_start();
 
 // Khởi tạo Object 
 include('VTD_class/VTD_system.php');
-$td_system = new VTD_system;
+$s = new VTD_system;
 include('VTD_class/VTD_data.php');
-$td_data = new VTD_data;
+$d = new VTD_data;
 
 /*
 spl_autoload_register('autoload');

@@ -1,3 +1,3 @@
 <?php
-include ($td_system->path_route($theme,"method","controller"));
+include ($s->path_route($theme,"method","controller"));
 ?>

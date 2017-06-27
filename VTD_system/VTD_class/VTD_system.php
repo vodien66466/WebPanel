@@ -1,6 +1,11 @@
 <?php
 class VTD_system
 {
+	public function path () {
+        $path_full=dirname(dirname(__FILE__));
+        $path=str_replace("\VTD_system","",$path_full);
+        return $path;
+    }
     public function base_url() {
         return "".$_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME']."/".$GLOBALS['config']['basePath'];
     }
@@ -43,7 +48,7 @@ class VTD_system
         $array=glob($path);
         $values = '';
         foreach ($array as $key => $value) {
-            $file=str_replace($this->path_theme($theme)."/".$folder."/main/".$this->action($view)."/","",$value);
+            $file=str_replace($this->path_theme($theme)."/".$folder."/".$this->action($view)."/","",$value);
             $file_cut=str_replace(".php","",$file);
             $values.=$file_cut.",";
         }
@@ -105,7 +110,7 @@ class VTD_system
                 $method="index";
             }
             //return $method;
-            $path=$this->path_theme($theme)."/".$folder."/main/".$action."/".$method.".php";
+            $path=$this->path_theme($theme)."/".$folder."/".$action."/".$method.".php";
         }
 
         if (file_exists($path)) {
@@ -113,6 +118,14 @@ class VTD_system
         } else {
             throw new Exception("File không tồn tại");
         }
+    }
+    public function path_incl ($theme,$path) {
+    	$file=$this->path_theme($theme)."/".$path.".php";
+    	if (file_exists($file)) {
+    		return $file;
+    	} else {
+    		throw new Exception("File layout không tồn tại");
+    	}
     }
     public function url_paging($theme,$url = null) {
         // nếu tồn tại $url thì set_url còn ngược lại thì get_url
@@ -154,11 +167,7 @@ class VTD_system
             return $file.".php?view=";
         }
     }
-    public function path () {
-        $path_full=dirname(dirname(__FILE__));
-        $path=str_replace("\VTD_system","",$path_full);
-        return $path;
-    }
+    
     public function get_view () {
         if (isset($GLOBALS['_GET']['VTD_view'])) {
             return $GLOBALS['_GET']['VTD_view'];
@@ -344,12 +353,13 @@ class VTD_system
 
         return implode(' ', $out);
     }
-    public function asset ($path,$theme) {
+    public function asset ($theme,$path) {
         if ($theme=="admin") {
-            return $this->base_url."/VTD_admin/".$this->theme($theme)."/".$path."";
+            return $this->base_url()."/VTD_admin/".$this->theme($theme)."/".$path;
         } else {
-            return $this->base_url."/VTD_home/".$this->theme($theme)."/".$path."";
+            return $this->base_url()."/VTD_home/".$this->theme($theme)."/".$path;
         }
+    	
     }
     
     //hàm thêm dấu chấm vào chuổi string số : vd : 15000000 =1.50000

@@ -2,33 +2,9 @@
 /**
 * 
 */
-class route extends core
+class route extends helper
 {
-	public function get($url) {
-		if ($url!="") {
-			$array=explode("/",$url);
-			if (count($array) > 0) {
-				$array_route=explode("-",$array['0']);
-				if (count($array_route)==1) {
-					return $array_route['0'];
-				} else if (count($array_route)==2) {
-					if ($array_route['0']!="" && $array_route['1']!="") {
-						return $array_route['0']."-".$array_route['1'];
-					} else if ($array_route['0']!="" && $array_route['1']=="") {
-						return $array_route['0'];
-					} else {
-						return "";
-					}
-				} else {
-					throw new Exception("Không tìm thấy link");
-				}
-			} else {
-				return "";
-			}
-		} else {
-			return "";
-		}
-	}
+	
 
 	public function path_route($theme,$type,$folder,$view = null) {
 		// nếu $view tồn tại thì set_route và ngược lại tự get_route
@@ -73,39 +49,5 @@ class route extends core
 			throw new Exception("File không tồn tại");
 		}
 	}
-
-	public function url($theme,$url = null) {
-		// nếu tồn tại $url thì set_url còn ngược lại thì get_url
-		if (isset($url)) {
-			$route=$this->get($url);
-		} else {
-			$route=$this->get($this->get_view());
-		}
-		return $this->base_url()."/".$this->url_rewrite($theme)."".$route;
-	}
-
-	public function param ($key,$url = null) {
-		$keys=$key+1;
-		if (isset($url)) {
-			$route=$url;
-		} else {
-			$route=$this->get_view();
-		}
-		$array=explode("/",$route);
-		if (count($array) > 1) {
-			$c_data=count($array)-2;
-			if ($key<=$c_data) {
-				return $array[$keys];
-			} else {
-				return false;
-			}
-		} else {
-			return false;
-		}
-
-	}
-
-
-
 
 }

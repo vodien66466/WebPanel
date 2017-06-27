@@ -12,16 +12,14 @@ session_start();
 //để hàm header() hoạt động không lỗi
 ob_start();
 // Khởi tạo Object 
-include('class/core.php');
-$core = new core;
-include('class/route.php');
-$route = new route;
-include('class/database.php');
-$data = new database;
 include('class/helper.php');
-$helper = new helper;
+$h = new helper;
+include('class/route.php');
+$r = new route;
+include('class/database.php');
+$d = new database;
 include('class/pagin.php');
-$pagin = new pagin;
+$p = new pagin;
 $view = isset($_GET['view']) ? trim($_GET['view']) : '';
 
 // xử lý nhận diện lỗi hệ thống và dừng toàn bộ hoạt động

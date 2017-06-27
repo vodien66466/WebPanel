@@ -1,21 +1,37 @@
 <?php
 include 'system/autoload.php';
-$view=$core->get_view();
+$view=$h->get_view();
 echo $view;
 ?>
 <hr>
 <?php
-$url=$route->get($view);
+$url=$r->get($view);
 echo $url;
 ?>
 <hr>
 <?php
-echo $route->path_route("admin","method","controller");
+echo $r->path_route("admin","method","controller");
 ?>
 <hr>
 <?php
-echo $route->get_view();
+echo $r->get_view();
 ?>
 <hr>
 <?php
-echo $route->param(2);
+echo $r->param(0);
+?>
+<hr>
+<?php
+echo $h->times(time());
+?>
+<hr>
+<?php
+echo $h->param_paging("actin-method/300");
+?>
+<hr>
+<?php
+echo $p->get_paging(100);
+?>
+<hr>
+<?php
+echo $p->paging("admin",100,10);

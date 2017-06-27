@@ -26,4 +26,5 @@ RewriteRule ^admin$ admin.php [L]
 RewriteRule ^admin/(.*)$ admin.php?view=$1 [L]
 
 
+
 </IfModule>

@@ -8,11 +8,12 @@ echo $td->param_paging();
 ?>
 <hr>
 <?php
-echo $td->get_paging(100);
+$k=10;
+echo $td->get_paging($k);
 ?>
 <hr>
 <?php
-echo $td->paging("admin",10000,100);
+echo $td->paging("admin",10000,$k);
 ?>
 <hr>
 <?php

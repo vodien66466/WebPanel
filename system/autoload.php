@@ -12,8 +12,8 @@ session_start();
 //để hàm header() hoạt động không lỗi
 ob_start();
 // Khởi tạo Object 
-include('class/TD_cms_class_route.php');
-$td = new TD_cms;
+include('class/TD_system.php');
+$td = new TD_system;
 include('class/database.php');
 $d = new database;
 $view = isset($_GET['view']) ? trim($_GET['view']) : '';

@@ -1,5 +1,5 @@
 <?php
-class TD_cms
+class TD_system
 {
     public function base_url() {
         return "".$_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME']."/".$GLOBALS['config']['basePath'];
@@ -188,7 +188,7 @@ class TD_cms
         if (count($array) > 2) {
             $c_data=count($array)-3;
             if ($key<=$c_data) {
-                return $array[$keys];
+                return $this->security($array[$keys],"string");
             } else {
                 return false;
             }
@@ -205,7 +205,7 @@ class TD_cms
         $array=explode("/",$route);
         if (count($array) > 1) {
             if (is_numeric($array['1'])) {
-                return $array['1'];
+                return $this->security($array['1'],"int");
             } else {
                 return false;
             }  
@@ -226,7 +226,7 @@ class TD_cms
             $fields = '';
             $values = '';
             foreach ($array as $keys => $value) {
-                $values.=addslashes($value)."/";
+                $values.=$this->security($value,"string")."/";
             }
             $values = trim($values,'/');
             $link="{$values}";

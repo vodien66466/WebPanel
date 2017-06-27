@@ -20,4 +20,4 @@ echo $h->all_param();
 ?>
 <hr>
 <?php
-echo $h->param(0);
+echo $h->param(7);

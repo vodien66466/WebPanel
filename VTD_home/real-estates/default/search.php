@@ -1,3 +1,0 @@
-<?php
-echo $core->path();
-?>

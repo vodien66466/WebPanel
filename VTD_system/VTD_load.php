@@ -1,5 +1,5 @@
 <?php
-defined('VTD') or die('Error');
+//defined('VTD') or die('Error');
 //file config website
 include 'VTD_config/VTD_main.php';
 // xử lý bất tắt báo lỗi
@@ -12,11 +12,23 @@ date_default_timezone_set($GLOBALS['config']['timezone']);
 session_start();
 //để hàm header() hoạt động không lỗi
 ob_start();
+
 // Khởi tạo Object 
-include('VTD_class/VTD_Class_System.php');
-$VTD_system = new VTD_system;
-include('VTD_class/VTD_Class_Data.php');
-$VTD_data = new VTD_data;
+include('VTD_class/VTD_system.php');
+$td_system = new VTD_system;
+include('VTD_class/VTD_data.php');
+$td_data = new VTD_data;
+
+/*
+spl_autoload_register('autoload');
+function autoload($name)
+{
+    $file ='VTD_class/' . $name . '.php';
+    if (file_exists($file))
+        require_once($file);
+}
+new VTD_system;
+*/
 $view = isset($_GET['VTD_view']) ? trim($_GET['VTD_view']) : '';
 
 // xử lý nhận diện lỗi hệ thống và dừng toàn bộ hoạt động

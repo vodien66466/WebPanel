@@ -34,6 +34,43 @@ class VTD_system
             return "index";
         }
     }
+    public function array_file_method ($theme,$folder,$view = null) {
+        // hàm mục đích tự động nhận method ở file controller
+        // hàm này dùng để lấy danh sách link cũng dc
+        $path_full=$this->path_route($theme,"action",$folder,$view);
+        $path_cut=str_replace($this->action($view).".php","",$path_full);
+        $path=$path_cut."main/".$this->action($view)."/*.php";
+        $array=glob($path);
+        $values = '';
+        foreach ($array as $key => $value) {
+            $file=str_replace($this->path_theme($theme)."/".$folder."/main/".$this->action($view)."/","",$value);
+            $file_cut=str_replace(".php","",$file);
+            $values.=$file_cut.",";
+        }
+        $values = trim($values, ',');
+        $array_file=explode(",",$values);
+        return $array_file;
+    }
+    public function action($url=null) {
+        $view=$this->get($url);
+        $array=explode("-",$view);
+        if (count($array)==1) {
+            return $array['0'];
+        } else {
+            return $array['0'];
+        }
+    }
+    public function method($url=null) {
+        $view=$this->get($url);
+        $array=explode("-",$view);
+        if (count($array)==1) {
+            return "index";
+        } else {
+            return $array['1'];
+        }
+    }
+
+
     public function path_route($theme,$type,$folder,$view = null) {
         // nếu $view tồn tại thì set_route và ngược lại tự get_route
         // theme là home hoặc admin

@@ -1,10 +1,15 @@
 <?php
-class helper
+class TD_cms
 {
     public function base_url() {
         return "".$_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME']."/".$GLOBALS['config']['basePath'];
     }
-    public function get($url) {
+    public function get($url=null) {
+        if (isset($url)) {
+            $url=$url;
+        } else {
+            $url=$this->get_view();
+        }
         if ($url!="") {
             $array=explode("/",$url);
             if (count($array) > 0) {
@@ -17,26 +22,84 @@ class helper
                     } else if ($array_route['0']!="" && $array_route['1']=="") {
                         return $array_route['0'];
                     } else {
-                        return "";
+                        return "error";
                     }
                 } else {
-                    throw new Exception("Không tìm thấy link");
+                    return "error";
                 }
             } else {
-                return "";
+                return "index";
             }
         } else {
-            return "";
+            return "index";
         }
+    }
+    public function path_route($theme,$type,$folder,$view = null) {
+        // nếu $view tồn tại thì set_route và ngược lại tự get_route
+        // theme là home hoặc admin
+        // folder là truyền tới bắt đầu từ thư mục theme
+        // type là action hoặc method
+        if (isset($view)) {
+            $view=$view;
+        } else {
+            $view=$this->get_view();
+        }
+        $url=$this->get($view);
+        $array=explode("-",$url);
+        if ($type=="action") {
+            if ($url!="") {
+                $action=$array['0'];
+            } else {
+                $action="index";
+            }
+            //return $action;
+            $path=$this->path_theme($theme)."/".$folder."/".$action.".php";
+        } else {
+            if ($url!="") { 
+                if (count($array)==1) {
+                    $action="index";
+                    $method="index";
+                } else {
+                    $action=$array['0'];
+                    $method=$array['1'];
+                }
+            } else {
+                $action="index";
+                $method="index";
+            }
+            //return $method;
+            $path=$this->path_theme($theme)."/".$folder."/main/".$action."/".$method.".php";
+        }
+
+        if (file_exists($path)) {
+            return $path;
+        } else {
+            throw new Exception("File không tồn tại");
+        }
+    }
+    public function url_paging($theme,$url = null) {
+        // nếu tồn tại $url thì set_url còn ngược lại thì get_url
+        $route=$this->get($url);
+        return $this->base_url()."/".$this->url_rewrite($theme)."".$route;
     }
     public function url($theme,$url = null) {
         // nếu tồn tại $url thì set_url còn ngược lại thì get_url
         if (isset($url)) {
-            $route=$this->get($url);
+            $view=$url;
         } else {
-            $route=$this->get($this->get_view());
+            $view=$this->get_view();
         }
-        return $this->base_url()."/".$this->url_rewrite($theme)."".$route;
+        $route=$this->get($url);
+        $array=explode("/",$view);
+        if (count($array)==1) {
+            return $this->base_url()."/".$this->url_rewrite($theme)."".$route;
+        } else if (count($array)==2) {
+            return $this->base_url()."/".$this->url_rewrite($theme)."".$route."/".$this->param_paging($url)."";
+        } else if (count($array)>=3) {
+            return $this->base_url()."/".$this->url_rewrite($theme)."".$route."/".$this->param_paging($url)."/".$this->all_param($url)."";
+        } else {
+            return $this->base_url()."/".$this->url_rewrite($theme);
+        }
     }
     public function url_rewrite($theme) {
         if ($theme=="admin") {
@@ -189,6 +252,60 @@ class helper
         } else {
             return false;
         }
+    }
+    public function get_paging ($kmess,$view = null) {
+        if (isset($view)) {
+            $page=$this->param_paging($view);
+        } else {
+            $page=intval($this->param_paging());
+        }
+        if ($this->is_paging($view)) {
+            if ($page==0) {
+                return 0;
+            } else {
+                return $page*$kmess-$kmess;
+            }
+        } else {
+            return 0;
+        }
+    }
+    public function paging($theme,$total,$kmess,$view=null)
+    {
+        $url=$this->url_paging($theme,$view);
+        $start=$this->get_paging($kmess,$view);
+        $neighbors = 2;
+        if ($start >= $total)
+            $start = max(0, $total - (($total % $kmess) == 0 ? $kmess : ($total % $kmess)));
+        else
+            $start = max(0, (int)$start - ((int)$start % (int)$kmess));
+        $base_link = '<li><a href="' . strtr($url, array('%' => '%%')) . '/%d/'.$this->all_param($view).'' . '">%s</a></li>';
+        $out[] = $start == 0 ? '' : sprintf($base_link, $start / $kmess, '&lt;&lt;');
+        if ($start > $kmess * $neighbors)
+            $out[] = sprintf($base_link, 1, '1');
+        if ($start > $kmess * ($neighbors + 1))
+            $out[] = '<li class="disabled"><a href="#">...</a></li>';
+        for ($nCont = $neighbors; $nCont >= 1; $nCont--)
+            if ($start >= $kmess * $nCont) {
+                $tmpStart = $start - $kmess * $nCont;
+                $out[] = sprintf($base_link, $tmpStart / $kmess + 1, $tmpStart / $kmess + 1);
+            }
+        $out[] = '<li class="active"><a href="#" aria-label="Previous"><span aria-hidden="true">' . ($start / $kmess + 1) . '</span></a></li>';
+        $tmpMaxPages = (int)(($total - 1) / $kmess) * $kmess;
+        for ($nCont = 1; $nCont <= $neighbors; $nCont++)
+            if ($start + $kmess * $nCont <= $tmpMaxPages) {
+                $tmpStart = $start + $kmess * $nCont;
+                $out[] = sprintf($base_link, $tmpStart / $kmess + 1, $tmpStart / $kmess + 1);
+            }
+        if ($start + $kmess * ($neighbors + 1) < $tmpMaxPages)
+            $out[] = '<li class="disabled"><a href="#">...</a></li>';
+        if ($start + $kmess * $neighbors < $tmpMaxPages)
+            $out[] = sprintf($base_link, $tmpMaxPages / $kmess + 1, $tmpMaxPages / $kmess + 1);
+        if ($start + $kmess < $total) {
+            $display_page = ($start + $kmess) > $total ? $total : ($start / $kmess + 2);
+            $out[] = ''.sprintf($base_link, $display_page, '&gt;&gt;').'';
+        }
+
+        return implode(' ', $out);
     }
     public function asset ($path,$theme) {
         if ($theme=="admin") {

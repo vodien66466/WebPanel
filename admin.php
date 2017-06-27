@@ -1,23 +1,27 @@
 <?php
 include 'system/autoload.php';
-include ($r->path_route("admin","action","controller"));
+include ($td->path_route("admin","action","controller"));
 ?>
 <hr>
 <?php
-echo $h->param_paging();
+echo $td->param_paging();
 ?>
 <hr>
 <?php
-echo $p->get_paging(100);
+echo $td->get_paging(100);
 ?>
 <hr>
 <?php
-echo $p->paging("admin",10000,100);
+echo $td->paging("admin",10000,100);
 ?>
 <hr>
 <?php
-echo $h->all_param();
+echo $td->all_param();
 ?>
 <hr>
 <?php
-echo $h->param(7);
+echo $td->param(7);
+?>
+<hr>
+<?php
+echo $td->url("admin");

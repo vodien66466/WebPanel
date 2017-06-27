@@ -20,10 +20,10 @@ AddType application/x-httpd-php-source .phtml .php3 .php4 .php5 .php6 .phps .cgi
 
 RewriteRule ^home/$ index.php [L]
 RewriteRule ^home$ index.php [L]
-RewriteRule ^home/(.*)$ index.php?view=$1 [L]
+RewriteRule ^home/(.*)$ index.php?VTD_view=$1 [L]
 RewriteRule ^admin/$ admin.php [L]
 RewriteRule ^admin$ admin.php [L]
-RewriteRule ^admin/(.*)$ admin.php?view=$1 [L]
+RewriteRule ^admin/(.*)$ admin.php?VTD_view=$1 [L]
 
 
 

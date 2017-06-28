@@ -162,7 +162,7 @@ class VTD_system
         if (file_exists($this->path()."".$path)) {
             return $this->path()."".$path;
         } else {
-            throw new Exception("file không tồn tại");
+            throw new Exception("VTD_System Báo Lỗi: không nhận dạng được file xử lý");
         }
     }
 
@@ -328,13 +328,43 @@ class VTD_system
 
         return implode(' ', $out);
     }
-    public function asset ($theme,$path) {
-        if ($theme=="admin") {
-            return $this->base_url()."/VTD_admin/".$this->theme($theme)."/".$path;
+    public function asset ($theme=null,$path) {
+        if (isset($theme)) {
+            $path_theme=$this->path_theme($theme)."/".$path;
+            if (file_exists($path_theme)) {
+                if ($theme=="admin") {
+                    return $this->base_url()."/VTD_admin/".$this->theme($theme)."/".$path;
+                } else {
+                    return $this->base_url()."/VTD_home/".$this->theme($theme)."/".$path;
+                }
+            } else {
+                return "VTD_System Báo Lỗi: File : ".$path." không tồn tại";
+            }
         } else {
-            return $this->base_url()."/VTD_home/".$this->theme($theme)."/".$path;
+            $path_asset=$this->path()."/".$path;
+            if (file_exists($path_asset)) {
+                return $this->base_url()."/".$path;
+            } else {
+                return "VTD_System Báo Lỗi: File : ".$path." không tồn tại";
+            }
         }
-    	
+    }
+
+    public function is_link ($url,$image=null) {
+        $headers = @get_headers($url);
+        if(strpos($headers[0],'404') === true) {
+          return $url;
+        } else {
+            if (isset($image)) {
+                if ($GLOBALS['config']['image_error']!="") {
+                    return $this->asset(null,$GLOBALS['config']['image_error']);
+                } else {
+                    return "VTD_System Báo Lỗi: Cần phải cấu hình cho : image_error";
+                }
+            } else {
+                return "VTD_System Báo Lỗi: Link : ".$url." không tồn tại";
+            } 
+        }
     }
     
     //hàm thêm dấu chấm vào chuổi string số : vd : 15000000 =1.50000

@@ -5,19 +5,19 @@
         Tip 3: you can change the color of the sidebar with data-background-color="white | black"
     -->
             <div class="logo">
-                <a href="<?=$home?>" class="simple-text">
+                <a href="" class="simple-text">
                     TD cms
                 </a>
             </div>
             <div class="logo logo-mini">
-                <a href="<?=$home?>" class="simple-text">
+                <a href="" class="simple-text">
                     TD
                 </a>
             </div>
             <div class="sidebar-wrapper">
                 <div class="user">
                     <div class="photo">
-                        <img src="<?=$command['avatar']?>" />
+                        <img src="" />
                     </div>
                 </div>
                 <ul class="nav">

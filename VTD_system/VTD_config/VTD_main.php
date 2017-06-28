@@ -3,6 +3,7 @@ $config = [
 		'basePath' => 'WebPanel', // Thư mục lưu code
 		'rootDir' => dirname(dirname(__FILE__)), // lấy path
 		'lang' => 'vi', // ngôn ngữ
+		'image_error' => 'public/images/ERROR.PNG',
 		'debug' => false, // bật tắt báo lỗi (false,true)
 		'timezone' => 'Asia/Ho_Chi_Minh', // múi giờ 
 		'theme' => 'VoTienDien/KenKen',

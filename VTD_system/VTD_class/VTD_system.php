@@ -15,20 +15,22 @@ class VTD_system
         } else {
             $url=$this->get_view();
         }
-        if ($url!="") {
+        if ($url!=null) {
             $array=explode("/",$url);
             if (count($array) > 0) {
                 $array_route=explode("-",$array['0']);
                 if (count($array_route)==1) {
                     return $array_route['0'];
                 } else if (count($array_route)==2) {
-                    if ($array_route['0']!="" && $array_route['1']!="") {
+
+                    if ($array_route['0']!=null && $array_route['1']!=null) {
                         return $array_route['0']."-".$array_route['1'];
-                    } else if ($array_route['0']!="" && $array_route['1']=="") {
+                    } else if ($array_route['0']!="" && $array_route['1']==null) {
                         return $array_route['0'];
                     } else {
                         return "error";
                     }
+
                 } else {
                     return "error";
                 }
@@ -76,47 +78,20 @@ class VTD_system
     }
 
 
-    public function path_route($theme,$type,$folder,$view = null) {
+    public function path_route($theme,$type,$folder,$url = null) {
         // nếu $view tồn tại thì set_route và ngược lại tự get_route
         // theme là home hoặc admin
         // folder là truyền tới bắt đầu từ thư mục theme
         // type là action hoặc method
-        if (isset($view)) {
-            $view=$view;
-        } else {
-            $view=$this->get_view();
-        }
-        $url=$this->get($view);
-        $array=explode("-",$url);
         if ($type=="action") {
-            if ($url!="") {
-                $action=$array['0'];
-            } else {
-                $action="index";
-            }
-            //return $action;
-            $path=$this->path_theme($theme)."/".$folder."/".$action.".php";
+            $path=$this->path_theme($theme)."/".$folder."/".$this->action($url).".php";
         } else {
-            if ($url!="") { 
-                if (count($array)==1) {
-                    $action="index";
-                    $method="index";
-                } else {
-                    $action=$array['0'];
-                    $method=$array['1'];
-                }
-            } else {
-                $action="index";
-                $method="index";
-            }
-            //return $method;
-            $path=$this->path_theme($theme)."/".$folder."/".$action."/".$method.".php";
+            $path=$this->path_theme($theme)."/".$folder."/".$this->action($url)."/".$this->method($url).".php";
         }
-
         if (file_exists($path)) {
             return $path;
         } else {
-            throw new Exception("File không tồn tại");
+            throw new Exception("VTD_System Báo Lỗi: không nhận dạng được file xử lý");
         }
     }
     public function path_incl ($theme,$path) {
@@ -124,7 +99,7 @@ class VTD_system
     	if (file_exists($file)) {
     		return $file;
     	} else {
-    		throw new Exception("File layout không tồn tại");
+    		throw new Exception("VTD_System Báo Lỗi: không nhận dạng được file xử lý");
     	}
     }
     public function url_paging($theme,$url = null) {
@@ -180,7 +155,7 @@ class VTD_system
         if (is_dir($this->path()."".$path)) {
             return $this->path()."".$path;
         } else {
-            throw new Exception("Thư mục không tồn tại");
+            throw new Exception("VTD_System Báo Lỗi: không nhận dạng được thư mục xử lý");
         }
     }
     public function path_file ($path) {
@@ -200,20 +175,20 @@ class VTD_system
                     if (is_dir($this->path()."/VTD_admin/".$array['0'])) {
                         return $array['0'];
                     } else {
-                        throw new Exception("Theme admin không tồn tại");
+                        throw new Exception("VTD_System Báo Lỗi: Không tìm thấy thư mục giao diện cho trang admin");
                     }
                 } else {
                     if (is_dir($this->path()."/VTD_home/".$array['0']."/".$array['1'])) {
                         return $array['0']."/".$array['1'];
                     } else {
-                        throw new Exception("Theme home không tồn tại");
+                        throw new Exception("VTD_System Báo Lỗi: Không tìm thấy thư mục giao diện cho trang home");
                     }
                 }
             } else {
-                throw new Exception("Cấu hình theme bị sai");
+                throw new Exception("VTD_System Báo Lỗi: Cấu hình giao diện bị lỗi");
             }
         } else {
-            throw new Exception("Cấu hình theme bị sai");
+            throw new Exception("VTD_System Báo Lỗi: Cấu hình giao diện bị lỗi");
         }
     }
     public function path_theme ($theme) {

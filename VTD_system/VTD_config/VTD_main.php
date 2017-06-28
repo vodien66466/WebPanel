@@ -6,7 +6,7 @@ $config = [
 		'image_error' => 'public/images/ERROR.PNG',
 		'debug' => false, // bật tắt báo lỗi (false,true)
 		'timezone' => 'Asia/Ho_Chi_Minh', // múi giờ 
-		'theme' => 'VoTienDien/KenKen',
+		'theme' => 'real-estates/John',
 		'url_rewrite' => true,
 		'db' => [
 			'enable' => false, // bật tắt kết nối sql (false,true)
@@ -16,7 +16,4 @@ $config = [
 			'dbname' => ''
 		]
 	];
-
-// $GLOBALS['config']['basePath']; biến toàn cục
-
 ?>

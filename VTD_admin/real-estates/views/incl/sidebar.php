@@ -1,4 +1,4 @@
-<div class="sidebar" data-active-color="rose" data-background-color="black" data-image="<?php echo $s->asset($theme,"public/assets/img/sidebar-1.jpg"); ?>">
+<div class="sidebar" data-active-color="rose" data-background-color="black" data-image="<?php echo $s->asset(null,"public/assets/img/sidebar-1.jpg"); ?>">
             <!--
         Tip 1: You can change the color of active element of the sidebar using: data-active-color="purple | blue | green | orange | red | rose"
         Tip 2: you can also add an image using data-image tag
@@ -6,12 +6,16 @@
     -->
             <div class="logo">
                 <a href="" class="simple-text">
-                    TD cms
+                    VTD
+                    <br>
+                    Web Master
+                    <br>
+                    System Route
                 </a>
             </div>
             <div class="logo logo-mini">
                 <a href="" class="simple-text">
-                    TD
+                    VTD
                 </a>
             </div>
             <div class="sidebar-wrapper">

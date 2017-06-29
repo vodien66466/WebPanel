@@ -75,7 +75,7 @@ class VTD_system
         } else {
             return $array['1'];
         }
-    }
+    } 
 
 
     public function path_route($theme,$type,$folder,$url = null) {
@@ -91,7 +91,11 @@ class VTD_system
         if (file_exists($path)) {
             return $path;
         } else {
-            throw new Exception("VTD_System Báo Lỗi: không nhận dạng được file xử lý");
+            if ($GLOBALS['config']['basePath']==true) {
+                return $this->path()."/VTD_ERROR/404.php";
+            } else {
+                throw new Exception("VTD_System Báo Lỗi: không nhận dạng được file xử lý");
+            }
         }
     }
     public function path_incl ($theme,$path) {
@@ -99,7 +103,11 @@ class VTD_system
     	if (file_exists($file)) {
     		return $file;
     	} else {
-    		throw new Exception("VTD_System Báo Lỗi: không nhận dạng được file xử lý");
+            if ($GLOBALS['config']['basePath']==true) {
+                return $this->path()."/VTD_ERROR/404.php";
+            } else {
+                throw new Exception("VTD_System Báo Lỗi: không nhận dạng được file xử lý");
+            }
     	}
     }
     public function url_paging($theme,$url = null) {

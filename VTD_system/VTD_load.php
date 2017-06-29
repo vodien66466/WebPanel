@@ -1,5 +1,5 @@
 <?php
-//defined('VTD') or die('Error');
+defined('VTD') or die('Error');
 //file config website
 include 'VTD_config/VTD_main.php';
 // xử lý bất tắt báo lỗi

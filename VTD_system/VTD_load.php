@@ -1,5 +1,5 @@
 <?php
-defined('VTD') or die('Error');
+defined('VTD_System_Route') or die();
 //file config website
 include 'VTD_config/VTD_main.php';
 // xử lý bất tắt báo lỗi

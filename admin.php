@@ -1,8 +1,6 @@
 <?php
-define('VTD','Code Hệ Thống By Võ Tiến Diễn');
+define('VTD_System_Route',1);
 include 'VTD_system/VTD_load.php';
 $theme="admin";
-//include ($s->path_incl($theme,"controller/index"));
-
-include ($s->path_incl(null,"/VTD_ERROR/404"));
+include ($s->path_incl($theme,"controller/index"));
 ?>

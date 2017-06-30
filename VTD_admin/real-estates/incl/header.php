@@ -76,8 +76,8 @@
                     <h2>Popular</h2>
                     <a class="dummy-media-object" href="#!"> <img src="<?=$s->asset(null,"public/assets/images/avatar-1.png")?>" alt="PagePreloadingEffect" />
                         <h3>Page Preloading Effect</h3> </a>
-                    <a class="dummy-media-object" href="#!"> <img src="<?=$s->asset(null,"public/assets/images/avatar-1.png")?>" alt="DraggableDualViewSlideshow" />
-                        <h3>Draggable Dual-View Slideshow</h3> </a>
+                    <a class="dummy-media-object" href="#!"> <img src="<?=$s->asset(null,"public/assets/images/avatar-1.png")?>" alt="DraggableDualviewlideshow" />
+                        <h3>Draggable Dual-view Slideshow</h3> </a>
                 </div>
                 <div class="dummy-column">
                     <h2>Recent</h2>

@@ -1,1 +1,0 @@
-<?php include ($s->path_route($theme,"method","views","user-login")); ?>

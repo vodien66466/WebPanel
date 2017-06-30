@@ -1,1 +1,0 @@
-<?php include ($s->path_incl($theme,"views/index")); ?>

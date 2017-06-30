@@ -1,4 +1,12 @@
-<title>Able Pro Responsive Bootstrap 4 Admin Template by Phoenixcoded</title>
+<?php
+//set màu sắc css
+if (isset($_COOKIE['color_css'])) {
+	$color_css=$_COOKIE['color_css'];
+} else {
+	$color_css="inverse";
+}
+?>
+<title><?php if (isset($title)) { echo $title; } ?> | Panel</title>
 <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -32,4 +40,4 @@
 
 <!--Màu sắc css-->
 <!--color css-->
-<link rel="stylesheet" type="text/css" href="<?=$s->asset(null,"public/assets/css/color/inverse.css")?>" id="color" />
+<link rel="stylesheet" type="text/css" href="<?=$s->asset(null,"public/assets/css/color/".$color_css.".css")?>" id="color" />

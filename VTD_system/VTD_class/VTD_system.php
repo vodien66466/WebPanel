@@ -1,5 +1,5 @@
 <?php
-class VTD_system
+class system
 {
 	public function path () {
         $path_full=dirname(dirname(__FILE__));
@@ -9,11 +9,18 @@ class VTD_system
     public function base_url() {
         return "".$_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME']."/".$GLOBALS['config']['basePath'];
     }
+    public function show ($text,$html=null) {
+        if (isset($html)) {
+            return $text;
+        } else {
+            return $text;
+        }
+    }
     public function get($url=null) {
         if (isset($url)) {
             $url=$url;
         } else {
-            $url=$this->get_view();
+            $url=system::get_view();
         }
         if ($url!=null) {
             $array=explode("/",$url);
@@ -42,7 +49,7 @@ class VTD_system
         }
     }
     public function action($url=null) {
-        $view=$this->get($url);
+        $view=system::get($url);
         $array=explode("-",$view);
         if (count($array)==1) {
             return $array['0'];
@@ -51,7 +58,7 @@ class VTD_system
         }
     }
     public function method($url=null) {
-        $view=$this->get($url);
+        $view=system::get($url);
         $array=explode("-",$view);
         if (count($array)==1) {
             return "index";
@@ -67,27 +74,27 @@ class VTD_system
         // folder là truyền tới bắt đầu từ thư mục theme
         // type là action hoặc method
         if ($type=="action") {
-            $path=$this->path_theme($theme)."/".$folder."/".$this->action($url).".php";
+            $path=system::path_theme($theme)."/".$folder."/".system::action($url).".php";
         } else {
-            $path=$this->path_theme($theme)."/".$folder."/".$this->action($url)."/".$this->method($url).".php";
+            $path=system::path_theme($theme)."/".$folder."/".system::action($url)."/".system::method($url).".php";
         }
         if (file_exists($path)) {
             return $path;
         } else {
             if ($GLOBALS['config']['basePath']==true) {
-                return $this->path()."/VTD_ERROR/404.php";
+                return system::path()."/VTD_ERROR/404.php";
             } else {
                 throw new Exception("VTD_System Báo Lỗi: không nhận dạng được file xử lý");
             }
         }
     }
     public function path_incl ($theme,$path) {
-    	$file=$this->path_theme($theme)."/".$path.".php";
+    	$file=system::path_theme($theme)."/".$path.".php";
     	if (file_exists($file)) {
     		return $file;
     	} else {
             if ($GLOBALS['config']['basePath']==true) {
-                return $this->path()."/VTD_ERROR/404.php";
+                return system::path()."/VTD_ERROR/404.php";
             } else {
                 throw new Exception("VTD_System Báo Lỗi: không nhận dạng được file xử lý");
             }
@@ -95,26 +102,26 @@ class VTD_system
     }
     public function url_paging($theme,$url = null) {
         // nếu tồn tại $url thì set_url còn ngược lại thì get_url
-        $route=$this->get($url);
-        return $this->base_url()."/".$this->url_rewrite($theme)."".$route;
+        $route=system::get($url);
+        return system::base_url()."/".system::url_rewrite($theme)."".$route;
     }
     public function url($theme,$url = null) {
         // nếu tồn tại $url thì set_url còn ngược lại thì get_url
         if (isset($url)) {
             $view=$url;
         } else {
-            $view=$this->get_view();
+            $view=system::get_view();
         }
-        $route=$this->get($url);
+        $route=system::get($url);
         $array=explode("/",$view);
         if (count($array)==1) {
-            return $this->base_url()."/".$this->url_rewrite($theme)."".$route;
+            return system::base_url()."/".system::url_rewrite($theme)."".$route;
         } else if (count($array)==2) {
-            return $this->base_url()."/".$this->url_rewrite($theme)."".$route."/".$this->param_paging($url)."";
+            return system::base_url()."/".system::url_rewrite($theme)."".$route."/".system::param_paging($url)."";
         } else if (count($array)>=3) {
-            return $this->base_url()."/".$this->url_rewrite($theme)."".$route."/".$this->param_paging($url)."/".$this->all_param($url)."";
+            return system::base_url()."/".system::url_rewrite($theme)."".$route."/".system::param_paging($url)."/".system::all_param($url)."";
         } else {
-            return $this->base_url()."/".$this->url_rewrite($theme);
+            return system::base_url()."/".system::url_rewrite($theme);
         }
     }
     public function url_rewrite($theme) {
@@ -143,15 +150,15 @@ class VTD_system
     }
     
     public function path_folder ($path) {
-        if (is_dir($this->path()."".$path)) {
-            return $this->path()."".$path;
+        if (is_dir(system::path()."".$path)) {
+            return system::path()."".$path;
         } else {
             throw new Exception("VTD_System Báo Lỗi: không nhận dạng được thư mục xử lý");
         }
     }
     public function path_file ($path) {
-        if (file_exists($this->path()."".$path)) {
-            return $this->path()."".$path;
+        if (file_exists(system::path()."".$path)) {
+            return system::path()."".$path;
         } else {
             throw new Exception("VTD_System Báo Lỗi: không nhận dạng được file xử lý");
         }
@@ -163,13 +170,13 @@ class VTD_system
             $array=explode("/",$string);
             if (count($array)==2) {
                 if ($theme=="admin") {
-                    if (is_dir($this->path()."/VTD_admin/".$array['0'])) {
+                    if (is_dir(system::path()."/VTD_admin/".$array['0'])) {
                         return $array['0'];
                     } else {
                         throw new Exception("VTD_System Báo Lỗi: Không tìm thấy thư mục giao diện cho trang admin");
                     }
                 } else {
-                    if (is_dir($this->path()."/VTD_home/".$array['0']."/".$array['1'])) {
+                    if (is_dir(system::path()."/VTD_home/".$array['0']."/".$array['1'])) {
                         return $array['0']."/".$array['1'];
                     } else {
                         throw new Exception("VTD_System Báo Lỗi: Không tìm thấy thư mục giao diện cho trang home");
@@ -184,9 +191,9 @@ class VTD_system
     }
     public function path_theme ($theme) {
         if ($theme=="admin") {
-            return $this->path()."/VTD_admin/".$this->theme($theme);
+            return system::path()."/VTD_admin/".system::theme($theme);
         } else {
-            return $this->path()."/VTD_home/".$this->theme($theme);
+            return system::path()."/VTD_home/".system::theme($theme);
         }
     }
     public function param ($key,$url = null) {
@@ -194,13 +201,13 @@ class VTD_system
         if (isset($url)) {
             $route=$url;
         } else {
-            $route=$this->get_view();
+            $route=system::get_view();
         }
         $array=explode("/",$route);
         if (count($array) > 2) {
             $c_data=count($array)-3;
             if ($key<=$c_data) {
-                return $this->security($array[$keys],"string");
+                return system::security($array[$keys],"string");
             } else {
                 return false;
             }
@@ -212,12 +219,12 @@ class VTD_system
         if (isset($url)) {
             $route=$url;
         } else {
-            $route=$this->get_view();
+            $route=system::get_view();
         }
         $array=explode("/",$route);
         if (count($array) > 1) {
             if (is_numeric($array['1'])) {
-                return $this->security($array['1'],"int");
+                return system::security($array['1'],"int");
             } else {
                 return false;
             }  
@@ -229,7 +236,7 @@ class VTD_system
         if (isset($view)) {
             $string=$view;
         } else {
-            $string=$this->get_view();
+            $string=system::get_view();
         }
         $array=explode("/",$string);
         if (count($array) > 2) {
@@ -238,7 +245,7 @@ class VTD_system
             $fields = '';
             $values = '';
             foreach ($array as $keys => $value) {
-                $values.=$this->security($value,"string")."/";
+                $values.=system::security($value,"string")."/";
             }
             $values = trim($values,'/');
             $link="{$values}";
@@ -252,7 +259,7 @@ class VTD_system
         if (isset($url)) {
             $route=$url;
         } else {
-            $route=$this->get_view();
+            $route=system::get_view();
         }
         $array=explode("/",$route);
         if (count($array) > 1) {
@@ -267,11 +274,11 @@ class VTD_system
     }
     public function get_paging ($kmess,$view = null) {
         if (isset($view)) {
-            $page=$this->param_paging($view);
+            $page=system::param_paging($view);
         } else {
-            $page=intval($this->param_paging());
+            $page=intval(system::param_paging());
         }
-        if ($this->is_paging($view)) {
+        if (system::is_paging($view)) {
             if ($page==0) {
                 return 0;
             } else {
@@ -283,14 +290,14 @@ class VTD_system
     }
     public function paging($theme,$total,$kmess,$view=null)
     {
-        $url=$this->url_paging($theme,$view);
-        $start=$this->get_paging($kmess,$view);
+        $url=system::url_paging($theme,$view);
+        $start=system::get_paging($kmess,$view);
         $neighbors = 2;
         if ($start >= $total)
             $start = max(0, $total - (($total % $kmess) == 0 ? $kmess : ($total % $kmess)));
         else
             $start = max(0, (int)$start - ((int)$start % (int)$kmess));
-        $base_link = '<li><a href="' . strtr($url, array('%' => '%%')) . '/%d/'.$this->all_param($view).'' . '">%s</a></li>';
+        $base_link = '<li><a href="' . strtr($url, array('%' => '%%')) . '/%d/'.system::all_param($view).'' . '">%s</a></li>';
         $out[] = $start == 0 ? '' : sprintf($base_link, $start / $kmess, '&lt;&lt;');
         if ($start > $kmess * $neighbors)
             $out[] = sprintf($base_link, 1, '1');
@@ -321,20 +328,20 @@ class VTD_system
     }
     public function asset ($theme=null,$path) {
         if (isset($theme)) {
-            $path_theme=$this->path_theme($theme)."/".$path;
+            $path_theme=system::path_theme($theme)."/".$path;
             if (file_exists($path_theme)) {
                 if ($theme=="admin") {
-                    return $this->base_url()."/VTD_admin/".$this->theme($theme)."/".$path;
+                    return system::base_url()."/VTD_admin/".system::theme($theme)."/".$path;
                 } else {
-                    return $this->base_url()."/VTD_home/".$this->theme($theme)."/".$path;
+                    return system::base_url()."/VTD_home/".system::theme($theme)."/".$path;
                 }
             } else {
                 return "VTD_System Báo Lỗi: File : ".$path." không tồn tại";
             }
         } else {
-            $path_asset=$this->path()."/".$path;
+            $path_asset=system::path()."/".$path;
             if (file_exists($path_asset)) {
-                return $this->base_url()."/".$path;
+                return system::base_url()."/".$path;
             } else {
                 return "VTD_System Báo Lỗi: File : ".$path." không tồn tại";
             }
@@ -348,7 +355,7 @@ class VTD_system
         } else {
             if (isset($image)) {
                 if ($GLOBALS['config']['image_error']!="") {
-                    return $this->asset(null,$GLOBALS['config']['image_error']);
+                    return system::asset(null,$GLOBALS['config']['image_error']);
                 } else {
                     return "VTD_System Báo Lỗi: Cần phải cấu hình cho : image_error";
                 }

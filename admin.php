@@ -5,14 +5,14 @@ $theme="admin";
 $_SESSION["ad_password"]=1;
 //session_destroy();
 if (isset($_SESSION["ad_password"])) {
-	if ($s->action()=="color_css") {
-		include ($s->path_route($theme,"method","backend"));
+	if (system::action()=="color_css") {
+		include (system::path_route($theme,"method","backend"));
 		exit;
 	} else {
-		include ($s->path_incl($theme,"index"));
+		include (system::path_incl($theme,"index"));
 	}
 } else {
-	include ($s->path_route($theme,"method","fontend","user-login"));
+	include (system::path_route($theme,"method","fontend","user-login"));
 }
 
 ?>

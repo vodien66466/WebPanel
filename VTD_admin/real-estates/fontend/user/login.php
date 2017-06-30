@@ -14,32 +14,32 @@
 	<meta name="author" content="Phoenixcoded">
 
 	<!-- Favicon icon -->
-	<link rel="shortcut icon" href="<?=$s->asset(null,"public/assets/images/favicon.png")?>" type="image/x-icon">
-	<link rel="icon" href="<?=$s->asset(null,"public/assets/images/favicon.ico")?>" type="image/x-icon">
+	<link rel="shortcut icon" href="<?=system::asset(null,"public/assets/images/favicon.png")?>" type="image/x-icon">
+	<link rel="icon" href="<?=system::asset(null,"public/assets/images/favicon.ico")?>" type="image/x-icon">
 
 	<!-- Google font-->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
 	<!-- Font Awesome -->
-	<link href="<?=$s->asset(null,"public/assets/css/font-awesome.min.css")?>" rel="stylesheet" type="text/css">
+	<link href="<?=system::asset(null,"public/assets/css/font-awesome.min.css")?>" rel="stylesheet" type="text/css">
 
 	<!--ico Fonts-->
-	<link rel="stylesheet" type="text/css" href="<?=$s->asset(null,"public/assets/icon/icofont/css/icofont.css")?>">
+	<link rel="stylesheet" type="text/css" href="<?=system::asset(null,"public/assets/icon/icofont/css/icofont.css")?>">
 
 	<!-- Required Fremwork -->
-	<link rel="stylesheet" type="text/css" href="<?=$s->asset(null,"public/assets/css/bootstrap.min.css")?>">
+	<link rel="stylesheet" type="text/css" href="<?=system::asset(null,"public/assets/css/bootstrap.min.css")?>">
 
 	<!-- waves css -->
-	<link rel="stylesheet" type="text/css" href="<?=$s->asset(null,"public/assets/plugins/waves/css/waves.min.css")?>">
+	<link rel="stylesheet" type="text/css" href="<?=system::asset(null,"public/assets/plugins/waves/css/waves.min.css")?>">
 
 	<!-- Style.css -->
-	<link rel="stylesheet" type="text/css" href="<?=$s->asset(null,"public/assets/css/main.css")?>">
+	<link rel="stylesheet" type="text/css" href="<?=system::asset(null,"public/assets/css/main.css")?>">
 
 	<!-- Responsive.css-->
-	<link rel="stylesheet" type="text/css" href="<?=$s->asset(null,"public/assets/css/responsive.css")?>">
+	<link rel="stylesheet" type="text/css" href="<?=system::asset(null,"public/assets/css/responsive.css")?>">
 
 	<!--color css-->
-	<link rel="stylesheet" type="text/css" href="<?=$s->asset(null,"public/assets/css/color/color-1.css")?>" id="color"/>
+	<link rel="stylesheet" type="text/css" href="<?=system::asset(null,"public/assets/css/color/color-1.css")?>" id="color"/>
 
 </head>
 <body>
@@ -52,7 +52,7 @@
 				<div class="login-card card-block">
 					<form class="md-float-material">
 						<div class="text-center">
-							<img style="width: 200px" src="<?=$s->asset(null,"public/images/logo/nen/2196F3.png")?>">
+							<img style="width: 200px" src="<?=system::asset(null,"public/images/logo/nen/2196F3.png")?>">
 						</div>
 						<h3 class="text-center txt-primary">
 							Đăng nhập vào tài khoản của bạn
@@ -104,16 +104,16 @@
 </section>
 <!-- Warning Section Ends -->
 <!-- Required Jqurey -->
-<script src="<?=$s->asset(null,"public/assets/js/jquery-3.1.1.min.js")?>"></script>
-<script src="<?=$s->asset(null,"public/assets/js/jquery-ui.min.js")?>"></script>
+<script src="<?=system::asset(null,"public/assets/js/jquery-3.1.1.min.js")?>"></script>
+<script src="<?=system::asset(null,"public/assets/js/jquery-ui.min.js")?>"></script>
 <!-- tether.js -->
-<script src="<?=$s->asset(null,"public/assets/js/tether.min.js")?>"></script>
+<script src="<?=system::asset(null,"public/assets/js/tether.min.js")?>"></script>
 <!-- waves effects.js -->
-<script src="<?=$s->asset(null,"public/assets/plugins/waves/js/waves.min.js")?>"></script>
+<script src="<?=system::asset(null,"public/assets/plugins/waves/js/waves.min.js")?>"></script>
 <!-- Required Framework -->
-<script src="<?=$s->asset(null,"public/assets/js/bootstrap.min.js")?>"></script>
+<script src="<?=system::asset(null,"public/assets/js/bootstrap.min.js")?>"></script>
 <!-- Custom js -->
-<script type="text/javascript" src="<?=$s->asset(null,"public/assets/pages/elements.js")?>"></script>
+<script type="text/javascript" src="<?=system::asset(null,"public/assets/pages/elements.js")?>"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 //waves effect js start
@@ -129,32 +129,32 @@
 	/* --------------------------------------------------------
        Color picker - demo only
        --------------------------------------------------------   */
-    $('<div class="color-picker"><a href="#" class="handle"><i class="icofont icofont-color-bucket"></i></a><div class="settings-header"><h3>Setting panel</h3></div><div class="section"><h3 class="color">Normal color schemes:</h3><div class="colors"><a href="#" class="color-1" ></a><a href="#" class="color-2" ></a><a href="#" class="color-3" ></a><a href="#" class="color-4" ></a><a href="#" class="color-5"></a></div></div><div class="section"><h3 class="color">Inverse color:</h3><div><a href="#" class="color-inverse"><img class="img img-fluid img-thumbnail" src="<?=$s->asset(null,"public/assets/images/inverse-layout.jpg")?>" /></a></div></div></div>').appendTo($('body'));
+    $('<div class="color-picker"><a href="#" class="handle"><i class="icofont icofont-color-bucket"></i></a><div class="settings-header"><h3>Setting panel</h3></div><div class="section"><h3 class="color">Normal color schemes:</h3><div class="colors"><a href="#" class="color-1" ></a><a href="#" class="color-2" ></a><a href="#" class="color-3" ></a><a href="#" class="color-4" ></a><a href="#" class="color-5"></a></div></div><div class="section"><h3 class="color">Inverse color:</h3><div><a href="#" class="color-inverse"><img class="img img-fluid img-thumbnail" src="<?=system::asset(null,"public/assets/images/inverse-layout.jpg")?>" /></a></div></div></div>').appendTo($('body'));
 
       /*Gradient Color*/
       /*Normal Color */
       $(".color-1").on('click',function() {
-          $("#color").attr("href", "<?=$s->asset(null,"public/assets/css/color/color-1.css")?>");
+          $("#color").attr("href", "<?=system::asset(null,"public/assets/css/color/color-1.css")?>");
           return false;
       });
       $(".color-2").on('click',function() {
-          $("#color").attr("href", "<?=$s->asset(null,"public/assets/css/color/color-2.css")?>");
+          $("#color").attr("href", "<?=system::asset(null,"public/assets/css/color/color-2.css")?>");
           return false;
       });
       $(".color-3").on('click',function() {
-          $("#color").attr("href", "<?=$s->asset(null,"public/assets/css/color/color-3.css")?>");
+          $("#color").attr("href", "<?=system::asset(null,"public/assets/css/color/color-3.css")?>");
           return false;
       });
       $(".color-4").on('click',function() {
-          $("#color").attr("href", "<?=$s->asset(null,"public/assets/css/color/color-4.css")?>");
+          $("#color").attr("href", "<?=system::asset(null,"public/assets/css/color/color-4.css")?>");
           return false;
       });
       $(".color-5").on('click',function() {
-          $("#color").attr("href", "<?=$s->asset(null,"public/assets/css/color/color-5.css")?>");
+          $("#color").attr("href", "<?=system::asset(null,"public/assets/css/color/color-5.css")?>");
           return false;
       });
         $(".color-inverse").on('click',function() {
-            $("#color").attr("href", "<?=$s->asset(null,"public/assets/css/color/inverse.css")?>");
+            $("#color").attr("href", "<?=system::asset(null,"public/assets/css/color/inverse.css")?>");
             return false;
         });
 

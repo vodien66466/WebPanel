@@ -1,11 +1,4 @@
 <section class="sidebar" id="sidebar-scroll">
-    <div class="user-panel">
-        <div class="f-left image"><img src="<?=$s->asset(null,"public/images/logo/nen/993333.png")?>" alt="User Image" class="img-circle"> </div>
-        <div class="f-left info">
-            <p>System Route</p>
-            
-        </div>
-    </div>
     <!-- Sidebar Menu-->
     <ul class="sidebar-menu">
         <li class="nav-level">Navigation</li>

@@ -1,5 +1,5 @@
 
-<a href="index.html" class="logo"><img class="img-fluid able-logo" src="<?=$s->asset(null,"public/assets/images/logo.png")?>" alt="Theme-logo"> </a>
+<a href="index.html" class="logo"><img class="img-fluid able-logo" src="<?=system::asset(null,"public/assets/images/logo.png")?>" alt="Theme-logo"> </a>
 <nav class="navbar navbar-static-top">
     <!-- Sidebar toggle button-->
     <a href="#!" data-toggle="offcanvas" class="sidebar-toggle"></a>
@@ -16,20 +16,20 @@
                     <li class="not-head">You have <b class="text-primary">4</b> new notifications.</li>
                     <li class="bell-notification">
                         <a href="javascript:;" class="media"> <span class="media-left media-icon">
-                <img class="img-circle" src="<?=$s->asset(null,"public/assets/images/avatar-1.png")?>" alt="User Image">
+                <img class="img-circle" src="<?=system::asset(null,"public/assets/images/avatar-1.png")?>" alt="User Image">
               </span>
                             <div class="media-body"><span class="block">Lisa sent you a mail</span><span class="text-muted block-time">2min ago</span> </div>
                         </a>
                     </li>
                     <li class="bell-notification">
                         <a href="javascript:;" class="media"> <span class="media-left media-icon">
-                <img class="img-circle" src="<?=$s->asset(null,"public/assets/images/avatar-2.png")?>" alt="User Image">
+                <img class="img-circle" src="<?=system::asset(null,"public/assets/images/avatar-2.png")?>" alt="User Image">
               </span>
                             <div class="media-body"><span class="block">Server Not Working</span><span class="text-muted block-time">20min ago</span> </div>
                         </a>
                     </li>
                     <li class="bell-notification"> <a href="javascript:;" class="media"><span class="media-left media-icon">
-                <img class="img-circle" src="<?=$s->asset(null,"public/assets/images/avatar-3.png")?>" alt="User Image">
+                <img class="img-circle" src="<?=system::asset(null,"public/assets/images/avatar-3.png")?>" alt="User Image">
               </span>
                                 <div class="media-body"><span class="block">Transaction xyz complete</span><span class="text-muted block-time">3 hours ago</span></div></a> </li>
                     <li class="not-footer"> <a href="#!">See all notifications.</a> </li>
@@ -45,7 +45,7 @@
             </li>
             <!-- User Menu-->
             <li class="dropdown">
-                <a href="#!" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle drop icon-circle drop-image"> <span><img class="img-circle " src="<?=$s->asset(null,"public/assets/images/avatar-1.png")?>" style="width:40px;" alt="User Image"></span> <span>John <b>Doe</b> <i class=" icofont icofont-simple-down"></i></span> </a>
+                <a href="#!" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle drop icon-circle drop-image"> <span><img class="img-circle " src="<?=system::asset(null,"public/assets/images/avatar-1.png")?>" style="width:40px;" alt="User Image"></span> <span>John <b>Doe</b> <i class=" icofont icofont-simple-down"></i></span> </a>
                 <ul class="dropdown-menu settings-menu">
                     <li><a href="#!"><i class="icon-settings"></i> Settings</a> </li>
                     <li><a href="#!"><i class="icon-user"></i> Profile</a> </li>
@@ -74,16 +74,16 @@
                 </div>
                 <div class="dummy-column">
                     <h2>Popular</h2>
-                    <a class="dummy-media-object" href="#!"> <img src="<?=$s->asset(null,"public/assets/images/avatar-1.png")?>" alt="PagePreloadingEffect" />
+                    <a class="dummy-media-object" href="#!"> <img src="<?=system::asset(null,"public/assets/images/avatar-1.png")?>" alt="PagePreloadingEffect" />
                         <h3>Page Preloading Effect</h3> </a>
-                    <a class="dummy-media-object" href="#!"> <img src="<?=$s->asset(null,"public/assets/images/avatar-1.png")?>" alt="DraggableDualviewlideshow" />
+                    <a class="dummy-media-object" href="#!"> <img src="<?=system::asset(null,"public/assets/images/avatar-1.png")?>" alt="DraggableDualviewlideshow" />
                         <h3>Draggable Dual-view Slideshow</h3> </a>
                 </div>
                 <div class="dummy-column">
                     <h2>Recent</h2>
-                    <a class="dummy-media-object" href="#!"> <img src="<?=$s->asset(null,"public/assets/images/avatar-1.png")?>" alt="TooltipStylesInspiration" />
+                    <a class="dummy-media-object" href="#!"> <img src="<?=system::asset(null,"public/assets/images/avatar-1.png")?>" alt="TooltipStylesInspiration" />
                         <h3>Tooltip Styles Inspiration</h3> </a>
-                    <a class="dummy-media-object" href="#!"> <img src="<?=$s->asset(null,"public/assets/images/avatar-1.png")?>" alt="NotificationStyles" />
+                    <a class="dummy-media-object" href="#!"> <img src="<?=system::asset(null,"public/assets/images/avatar-1.png")?>" alt="NotificationStyles" />
                         <h3>Notification Styles Inspiration</h3> </a>
                 </div>
             </div>

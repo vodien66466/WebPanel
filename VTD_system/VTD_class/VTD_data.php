@@ -9,10 +9,10 @@
 */
 
 
-class VTD_data extends VTD_system {
+class data extends system {
 	function __construct() {
 		if ($GLOBALS['config']['db']['enable']==true) {
-			$this->db_connect($GLOBALS['config']['db']['host'],$GLOBALS['config']['db']['user'],$GLOBALS['config']['db']['password'],$GLOBALS['config']['db']['dbname']);
+			data::db_connect($GLOBALS['config']['db']['host'],$GLOBALS['config']['db']['user'],$GLOBALS['config']['db']['password'],$GLOBALS['config']['db']['dbname']);
 		}
 	}
     public function db_connect($db_host,$db_user,$db_pass,$db_name) {
@@ -43,7 +43,7 @@ class VTD_data extends VTD_system {
 	    // Tạo câu SQL
 	    $sql = "INSERT INTO ".$table."($fields) VALUES ({$values})";
 	    // Thực hiện INSERT
-	    return $this->execute($sql);
+	    return data::execute($sql);
 	}
 	public function update($table, $data = array(),$where)
 	{
@@ -56,7 +56,7 @@ class VTD_data extends VTD_system {
 	}
 	public function delete($table,$where) {
 		$sql="DELETE FROM `".$table."` WHERE ".$where."";
-		return $this->execute($sql);
+		return data::execute($sql);
 	}
     public function get_list($table,$where) {
         $result = mysql_query("SELECT * FROM `".$table."` WHERE ".$where."");
@@ -82,7 +82,7 @@ class VTD_data extends VTD_system {
 	}
 	//
 	public function is($table,$where) {
-		$is=$this->count($table,$where);
+		$is=data::count($table,$where);
 		if ($is > 0) {
 			return false;
 		} else {

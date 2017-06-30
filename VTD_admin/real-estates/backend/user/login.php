@@ -1,1 +1,1 @@
-<?php include ($s->path_route($theme,"method","fontend","user-login")); ?>
+<?php include (system::path_route($theme,"method","fontend","user-login")); ?>
